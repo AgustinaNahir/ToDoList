@@ -1,3 +1,24 @@
+const formUsers = document.getElementById('form-add-users');
+const tableUsers = document.getElementById('table-users');
+
+const createUser = async (e) => {
+    e.preventDefault()
+    const formU = e.target
+
+    const user = {
+        name: formU.name.value 
+    }
+
+    await addUser(user)
+    loadUsers()
+    
+}
+
+formCategory.addEventListener('submit', createUser)
+
+
+
+
 // 1 - Crear el formulario para agregar categoras.
     // Los controles (input, textarea, select) tienen que tener un name.
 
