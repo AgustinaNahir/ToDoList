@@ -11,7 +11,7 @@
         <label for="">Usuarios</label>
         <input type="text" name="name">
         <label for="">E-mail</label>
-        <input type="text" name="e-mail">
+        <input type="text" name="email">
         <label for="">Contraseña</label>
         <input type="text" name="pass">
         <button type="submit">Enviar</button>
@@ -19,12 +19,15 @@
 
     <table id="table-users" border="1">
         <thead>
-            <th> Nombre</th>
+            <th>Nombre</th>
             <th>E-mail</th>
+            <th>Contraseña</th>
         </thead>
         <tbody></tbody>
     </table>
 
-  <script src="./app/users.js"></script>  
+    <script src="./app/helpers.js"></script>
+    <script src="./api/users.js"></script>
+    <script src="./app/users.js"></script>  
 </body>
 </html>

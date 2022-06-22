@@ -35,50 +35,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var addCategory = function (category) { return __awaiter(_this, void 0, void 0, function () {
-    var options;
-    return __generator(this, function (_a) {
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(category)
-        };
-        fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/categories.json', options);
-        return [2 /*return*/];
-    });
-}); };
-var getCategories = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, data;
+var formCategory = document.getElementById('form-add-category');
+var addCategory = function (e) { return __awaiter(_this, void 0, void 0, function () {
+    var form, category;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/categories.json')];
-            case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                data = _a.sent();
-                return [2 /*return*/, mapToArray(data)];
-        }
-    });
-}); };
-var updateCategory = function (id) {
-};
-var deleteCategory = function (id) { return __awaiter(_this, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("https://todolist-58dc6-default-rtdb.firebaseio.com/categories/".concat(id, ".json"))];
+            case 0:
+                e.preventDefault();
+                form = e.target;
+                category = {
+                    name: form.name.value
+                };
+                return [4 /*yield*/, addCategory(category)];
             case 1:
                 _a.sent();
-                {
-                    method: 'DELETE';
-                }
+                loadCategories();
                 return [2 /*return*/];
         }
     });
 }); };
-var getCategory = function (id) {
-};
-var getCategoryByName = function (name) {
-};
+formCategory.addEventListener('submit', addCategory);

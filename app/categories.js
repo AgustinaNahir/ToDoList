@@ -35,50 +35,49 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var addCategory = function (category) { return __awaiter(_this, void 0, void 0, function () {
-    var options;
-    return __generator(this, function (_a) {
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(category)
-        };
-        fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/categories.json', options);
-        return [2 /*return*/];
-    });
-}); };
-var getCategories = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, data;
+var tableCategories = document.getElementById('table-categories');
+// 1 - Crear el formulario para agregar categoras.
+// Los controles (input, textarea, select) tienen que tener un name.
+// 2 - Quedar a la escucha de un evento submit
+// 3 - Crear una funcion que se invoque al producirse el evento.
+// 4 - Armar un objeto con los datos del formulario y enviar a una funcion que lo guarde en la DB
+// 5 - Armar una funcion que tome los datos del formulario y realizar la request a la DB
+// 6 - La respuesta de la base de datos deberiamos tratarla de alguna manera. Vamos a utilizar 
+//     la funcin de ayuda que convierte la respuesta en un array.
+var loadCategories = function () { return __awaiter(_this, void 0, void 0, function () {
+    var categories, tbody;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/categories.json')];
+            case 0: return [4 /*yield*/, getCategories()];
             case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                data = _a.sent();
-                return [2 /*return*/, mapToArray(data)];
-        }
-    });
-}); };
-var updateCategory = function (id) {
-};
-var deleteCategory = function (id) { return __awaiter(_this, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("https://todolist-58dc6-default-rtdb.firebaseio.com/categories/".concat(id, ".json"))];
-            case 1:
-                _a.sent();
-                {
-                    method: 'DELETE';
-                }
+                categories = _a.sent();
+                tbody = tableCategories.querySelector('tbody');
+                tbody.innerHTML = '';
+                categories.forEach(function (cat) {
+                    var tr = document.createElement('tr');
+                    var tdId = document.createElement('td');
+                    var tdName = document.createElement('td');
+                    var tdAction = document.createElement('td');
+                    var txtId = document.createTextNode(cat.id);
+                    var txtName = document.createTextNode(cat.name);
+                    var btnDelete = document.createElement('button');
+                    var btnEdit = document.createElement('button');
+                    var txtBtnDel = document.createTextNode('Eliminar');
+                    var txtBtnEdit = document.createTextNode('Editar');
+                    tdId.appendChild(txtId);
+                    tdName.appendChild(txtName);
+                    btnDelete.appendChild(txtBtnDel);
+                    btnEdit.appendChild(txtBtnEdit);
+                    tdAction.appendChild(btnDelete);
+                    tdAction.appendChild(btnEdit);
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdAction);
+                    tbody.appendChild(tr);
+                    btnDelete.addEventListener('click', deleteCategory);
+                });
                 return [2 /*return*/];
         }
     });
 }); };
-var getCategory = function (id) {
-};
-var getCategoryByName = function (name) {
-};
+loadCategories();

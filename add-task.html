@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form-add-task">
+        <label for="">Título</label>
+        <input type="text" name="title">
+
+        <label for="">Fecha</label>
+        <input type="date" name="date">
+
+        <label for="">Descripción</label>
+        <textarea name="description" id=""></textarea>
+        
+        <select name="users" id="users-control">
+            <!--
+                <option value="Venezuela">Venezuela</option>
+             -->
+            
+        </select>
+        <select name="category" id="category-control">
+
+        </select>
+        <select name="state" id="state-control">
+            <option value="pending">Pendiente</option>
+            <option value="doing">En proceso</option>
+            <option value="done">Realizado</option>
+        </select>
+          <button type="submit">Agregar</button>
+    </form>
+
+    <script src="./app/helpers.js"></script>
+    <script src="./api/users.js"></script>
+    <script src="./api/categories.js"></script>
+    <script src="./api/tasks.js"></script>
+    <script src="./app/tasks.js"></script>
+</body>
+</html>

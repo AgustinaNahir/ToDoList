@@ -1,20 +1,6 @@
-const formCategory = document.getElementById('form-add-category');
+
 const tableCategories = document.getElementById('table-categories');
 
-const createCategory = async (e) => {
-    e.preventDefault()
-    const form = e.target
-
-    const category = {
-        name: form.name.value 
-    }
-
-    await addCategory(category)
-    loadCategories()
-    
-}
-
-formCategory.addEventListener('submit', createCategory)
 
 // 1 - Crear el formulario para agregar categoras.
     // Los controles (input, textarea, select) tienen que tener un name.
@@ -42,19 +28,34 @@ const loadCategories = async () => {
         const tr = document.createElement('tr')
         const tdId = document.createElement('td')
         const tdName = document.createElement('td')
+        const tdAction = document.createElement('td')
         const txtId = document.createTextNode(cat.id)
-        const txtName = document.createTextNode(cat.name);
+        const txtName = document.createTextNode(cat.name)
+        const btnDelete = document.createElement('button')
+        const btnEdit = document.createElement('button')
+        const txtBtnDel = document.createTextNode('Eliminar')
+        const txtBtnEdit = document.createTextNode('Editar')
 
-        tr.appendChild(tdId)
-        tr.appendChild(tdName)
         tdId.appendChild(txtId)
         tdName.appendChild(txtName)
+        btnDelete.appendChild(txtBtnDel)
+        btnEdit.appendChild(txtBtnEdit)
+        tdAction.appendChild(btnDelete)
+        tdAction.appendChild(btnEdit)
+        tr.appendChild(tdId)
+        tr.appendChild(tdName)
+        tr.appendChild(tdAction)
+        
 
         tbody.appendChild(tr)
+        btnDelete.addEventListener('click', deleteCategory)
     })
+
     
 }
 
 loadCategories()
+
+
 
 

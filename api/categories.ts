@@ -17,3 +17,24 @@ const getCategories = async () => {
 
   return mapToArray(data)
 } 
+
+const updateCategory = (id) => {
+
+}
+
+const deleteCategory = async (id) => {
+  await fetch(`https://todolist-58dc6-default-rtdb.firebaseio.com/categories/${id}.json`)
+    {
+      method: 'DELETE'
+    }
+}
+  
+
+
+const getCategory = (id) => {
+
+}
+
+const getCategoryByName = (name) => {
+
+}

@@ -35,50 +35,50 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var addCategory = function (category) { return __awaiter(_this, void 0, void 0, function () {
-    var options;
-    return __generator(this, function (_a) {
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(category)
-        };
-        fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/categories.json', options);
-        return [2 /*return*/];
-    });
-}); };
-var getCategories = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, data;
+var tasksForm = document.getElementById('form-add-task');
+var usersControl = document.getElementById('users-control');
+var loadUsers = function () { return __awaiter(_this, void 0, void 0, function () {
+    var users;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/categories.json')];
+            case 0: return [4 /*yield*/, getUsers()];
             case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                data = _a.sent();
-                return [2 /*return*/, mapToArray(data)];
-        }
-    });
-}); };
-var updateCategory = function (id) {
-};
-var deleteCategory = function (id) { return __awaiter(_this, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("https://todolist-58dc6-default-rtdb.firebaseio.com/categories/".concat(id, ".json"))];
-            case 1:
-                _a.sent();
-                {
-                    method: 'DELETE';
-                }
+                users = _a.sent();
+                usersControl.innerHTML = '';
+                users.forEach(function (us) {
+                    var optionName = document.createElement('option');
+                    var txtName = document.createTextNode(us.name);
+                    optionName.appendChild(txtName);
+                    usersControl.appendChild(optionName);
+                });
                 return [2 /*return*/];
         }
     });
 }); };
-var getCategory = function (id) {
-};
-var getCategoryByName = function (name) {
-};
+loadUsers();
+var categoryControl = document.getElementById('category-control');
+var loadCategories = function () { return __awaiter(_this, void 0, void 0, function () {
+    var users;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getCategories()];
+            case 1:
+                users = _a.sent();
+                categoryControl.innerHTML = '';
+                users.forEach(function (cat) {
+                    var optionName = document.createElement('option');
+                    var txtName = document.createTextNode(cat.name);
+                    optionName.appendChild(txtName);
+                    categoryControl.appendChild(optionName);
+                });
+                return [2 /*return*/];
+        }
+    });
+}); };
+loadCategories();
+/**
+ * 1 - Obtener por id el desplegable (select)
+2 - ir a buscar los usuarios a la api
+3 - Pasarlos por el mapToArray para tenerlos en un array de objetos
+5 - Iterar los usuarios creando options (<option>) con su value y su texto como en el ejemplo que dejamos comentado en el html
+6 - Agregarlos al select con appendChild. */

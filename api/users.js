@@ -35,58 +35,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var formCategory = document.getElementById('form-add-category');
-var tableCategories = document.getElementById('table-categories');
-var createCategory = function (e) { return __awaiter(_this, void 0, void 0, function () {
-    var form, category;
+var addUser = function (users) { return __awaiter(_this, void 0, void 0, function () {
+    var options;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                e.preventDefault();
-                form = e.target;
-                category = {
-                    name: form.name.value
+                options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(users)
                 };
-                return [4 /*yield*/, addCategory(category)];
+                return [4 /*yield*/, fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/users.json', options)];
             case 1:
                 _a.sent();
-                loadCategories();
                 return [2 /*return*/];
         }
     });
 }); };
-formCategory.addEventListener('submit', createCategory);
-// 1 - Crear el formulario para agregar categoras.
-// Los controles (input, textarea, select) tienen que tener un name.
-// 2 - Quedar a la escucha de un evento submit
-// 3 - Crear una funcion que se invoque al producirse el evento.
-// 4 - Armar un objeto con los datos del formulario y enviar a una funcion que lo guarde en la DB
-// 5 - Armar una funcion que tome los datos del formulario y realizar la request a la DB
-// 6 - La respuesta de la base de datos deberiamos tratarla de alguna manera. Vamos a utilizar 
-//     la funcin de ayuda que convierte la respuesta en un array.
-var loadCategories = function () { return __awaiter(_this, void 0, void 0, function () {
-    var categories, tbody;
+var getUsers = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getCategories()];
+            case 0: return [4 /*yield*/, fetch('https://todolist-58dc6-default-rtdb.firebaseio.com/users.json')];
             case 1:
-                categories = _a.sent();
-                tbody = tableCategories.querySelector('tbody');
-                tbody.innerHTML = '';
-                categories.forEach(function (cat) {
-                    var tr = document.createElement('tr');
-                    var tdId = document.createElement('td');
-                    var tdName = document.createElement('td');
-                    var txtId = document.createTextNode(cat.id);
-                    var txtName = document.createTextNode(cat.name);
-                    tr.appendChild(tdId);
-                    tr.appendChild(tdName);
-                    tdId.appendChild(txtId);
-                    tdName.appendChild(txtName);
-                    tbody.appendChild(tr);
-                });
-                return [2 /*return*/];
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                return [2 /*return*/, mapToArray(data)];
         }
     });
 }); };
-loadCategories();
