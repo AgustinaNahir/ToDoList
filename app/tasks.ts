@@ -22,11 +22,11 @@ loadUsers()
 const categoryControl = document.getElementById('category-control');
 
 const loadCategories = async () => {
-    const users = await getCategories()
+    const categories = await getCategories()
     
     categoryControl.innerHTML = '';
 
-    users.forEach(cat => {
+    categories.forEach(cat => {
         const optionName = document.createElement('option')
         const txtName = document.createTextNode(cat.name)
        
